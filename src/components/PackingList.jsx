@@ -1,4 +1,3 @@
-// src/components/PackingList.jsx
 import { useMemo, useState } from "react";
 import { FiTrash2, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Item from "./Item";
@@ -23,7 +22,8 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
 
   return (
     <div className="space-y-4">
-      <header className="flex flex-wrap items-center justify-between gap-3">
+      {/* Header */}
+      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold text-slate-900 dark:text-white">
             Packing list
@@ -33,9 +33,13 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* Controls */}
+        <div className="flex flex-wrap items-center gap-2">
           <select
-            className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-950/60 px-3 py-2 text-sm outline-none focus:ring-4 ring-indigo-500/20 focus:border-indigo-500 transition"
+            className="rounded-xl border border-slate-200 dark:border-slate-700 
+                       bg-white/80 dark:bg-slate-950/60 px-3 py-2 text-sm 
+                       outline-none focus:ring-4 ring-indigo-500/20 
+                       focus:border-indigo-500 transition w-full sm:w-auto"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -47,7 +51,10 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
 
           <button
             onClick={() => setOpen((o) => !o)}
-            className="inline-flex items-center gap-1 rounded-xl px-3 py-2 text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-950/60 hover:shadow transition"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1 
+                       rounded-xl px-3 py-2 text-sm font-medium 
+                       border border-slate-200 dark:border-slate-700 
+                       bg-white/80 dark:bg-slate-950/60 hover:shadow transition"
           >
             {open ? <FiChevronUp /> : <FiChevronDown />}
             {open ? "Collapse" : "Expand"}
@@ -55,7 +62,12 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
 
           <button
             onClick={onClear}
-            className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium border border-rose-200 dark:border-rose-900/60 bg-rose-50/80 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/30 transition"
+            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 
+                       rounded-xl px-3 py-2 text-sm font-medium 
+                       border border-rose-200 dark:border-rose-900/60 
+                       bg-rose-50/80 dark:bg-rose-900/20 
+                       text-rose-700 dark:text-rose-300 
+                       hover:bg-rose-100 dark:hover:bg-rose-900/30 transition"
           >
             <FiTrash2 />
             Clear all
@@ -63,6 +75,7 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
         </div>
       </header>
 
+      {/* List */}
       {open && (
         <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {sorted.map((item) => (
