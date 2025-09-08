@@ -35,9 +35,11 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
 
         {/* Controls */}
         <div className="flex flex-wrap items-center gap-2">
+          {/* Sorting select */}
           <select
             className="rounded-xl border border-slate-200 dark:border-slate-700 
                        bg-white/80 dark:bg-slate-950/60 px-3 py-2 text-sm 
+                       text-slate-800 dark:text-slate-200
                        outline-none focus:ring-4 ring-indigo-500/20 
                        focus:border-indigo-500 transition w-full sm:w-auto"
             value={sortBy}
@@ -49,17 +51,21 @@ export default function PackingList({ items, onDeleteItem, onToggleItem, onClear
             <option value="packed">Sort: Unpacked first</option>
           </select>
 
+          {/* Collapse/Expand button */}
           <button
             onClick={() => setOpen((o) => !o)}
             className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1 
                        rounded-xl px-3 py-2 text-sm font-medium 
                        border border-slate-200 dark:border-slate-700 
-                       bg-white/80 dark:bg-slate-950/60 hover:shadow transition"
+                       bg-white/80 dark:bg-slate-950/60 
+                       text-slate-800 dark:text-slate-200
+                       hover:shadow transition"
           >
             {open ? <FiChevronUp /> : <FiChevronDown />}
             {open ? "Collapse" : "Expand"}
           </button>
 
+          {/* Clear all button */}
           <button
             onClick={onClear}
             className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 
